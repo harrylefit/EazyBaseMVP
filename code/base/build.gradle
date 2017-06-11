@@ -1,0 +1,69 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //support
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation(rootProject.ext.dependencies["appcompat-v7"]) {
+        transitive = true
+    }
+    implementation(rootProject.ext.dependencies["design"]) {
+        transitive = true
+    }
+    implementation(rootProject.ext.dependencies["support-v4"]) {
+        transitive true
+    }
+    implementation(rootProject.ext.dependencies["annotations"]) {
+        transitive true
+    }
+    implementation(rootProject.ext.dependencies["recyclerview-v7"]) {
+        transitive true
+    }
+
+    //network
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["okhttp-urlconnection"]
+    implementation rootProject.ext.dependencies["glide"]
+
+    //Reactive
+    implementation rootProject.ext.dependencies["rxandroid2"]
+    implementation rootProject.ext.dependencies["rxjava2"]
+
+    //Eventbus
+    implementation rootProject.ext.dependencies["event-bus"]
+
+    //View
+    implementation rootProject.ext.dependencies["butter-knife"]
+    annotationProcessor rootProject.ext.dependencies["butter-knife-compiler"]
+
+    //Rebound
+    implementation rootProject.ext.dependencies["rebound"]
+
+    //Slim Adapter
+    implementation rootProject.ext.dependencies["slim-adapter"]
+}

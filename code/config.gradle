@@ -1,0 +1,54 @@
+ext {
+    android = [
+            compileSdkVersion: 25,
+            buildToolsVersion: "25.0.3",
+            minSdkVersion    : 15,
+            targetSdkVersion : 25,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    version = [
+            androidSupportVersion: "25.4.0",
+            retrofitVersion      : "2.3.0",
+            okHttpVersion        : "3.8.0",
+            okHtppUrlConnection  : "2.0.0",
+            glideVersion         : "3.8.0",
+            rxAndroidVersion     : "2.0.1",
+            rxJavaVersion        : "2.1.0",
+            eventBusVersion      : "3.0.0",
+            butterKnifeVersion   : "8.6.0",
+            reboundVersion       : "0.3.8",
+            slimAdapterVersion   : "2.1.0"
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${version["androidSupportVersion"]}",
+            "design"                  : "com.android.support:design:${version["androidSupportVersion"]}",
+            "support-v4"              : "com.android.support:support-compat:${version["androidSupportVersion"]}",
+            "annotations"             : "com.android.support:support-annotations:${version["androidSupportVersion"]}",
+            "recyclerview-v7"         : "com.android.support:recyclerview-v7:${version["androidSupportVersion"]}",
+
+            //network
+            "retrofit"                : "com.squareup.retrofit2:retrofit:${version["retrofitVersion"]}",
+            "retrofit-converter-gson" : "com.squareup.retrofit2:converter-gson:${version["retrofitVersion"]}",
+            "retrofit-adapter-rxjava2": "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitVersion"]}",
+            "okhttp3"                 : "com.squareup.okhttp3:okhttp:${version["okHttpVersion"]}",
+            "okhttp-urlconnection"    : "com.squareup.okhttp:okhttp-urlconnection:${version["okHtppUrlConnection"]}",
+            "glide"                   : "com.github.bumptech.glide:glide:${version["glideVersion"]}",
+
+            //RxJava
+            "rxandroid2"              : "io.reactivex.rxjava2:rxandroid:${version["rxAndroidVersion"]}",
+            "rxjava2"                 : "io.reactivex.rxjava2:rxjava:${version["rxJavaVersion"]}",
+
+            //EventBus
+            "event-bus"               : "org.greenrobot:eventbus:${version["eventBusVersion"]}",
+
+            //View
+            "butter-knife"            : "com.jakewharton:butterknife:${version["butterKnifeVersion"]}",
+            "butter-knife-compiler"   : "com.jakewharton:butterknife-compiler:${version["butterKnifeVersion"]}",
+            "rebound"                 : "com.facebook.rebound:rebound:${version["reboundVersion"]}",
+            "slim-adapter"            : "net.idik:slimadapter:${version["slimAdapterVersion"]}",
+    ]
+}

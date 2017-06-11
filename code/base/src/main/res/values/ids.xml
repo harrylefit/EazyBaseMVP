@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="back_button" type="id" />
+    <item name="left_button" type="id" />
+    <item name="right_button" type="id" />
+    <item name="tvTitleToolbar" type="id" />
+    <item name="toolbar" type="id" />
+    <item name="fragment_content" type="id" />
+    <item name="holder_layout" type="id" />
+    <item name="rvData" type="id">1234</item>
+    <item name="root_layout" type="id" />
+    <item name="lyClick" type="id" />
+
+    <!-- drawer -->
+    <item name="drawer_layout" type="id" />
+    <item name="left_drawer" type="id" />
+
+    <item name="tvMessagePage" type="id" />
+    <item name="progressPage" type="id" />
+    <item name="containerPage" type="id" />
+    <item name="tag_multistateview" type="id"/>
+    
+    <!-- multistateview -->
+    <item name="multiStateView" type="id"/>
+</resources>
