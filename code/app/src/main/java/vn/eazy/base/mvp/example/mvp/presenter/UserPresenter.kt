@@ -1,9 +1,7 @@
 package vn.eazy.base.mvp.example.mvp.presenter
 
 import android.util.Log
-import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import vn.eazy.base.mvp.architect.BasePresenter
 import vn.eazy.base.mvp.example.mvp.contract.UserContract

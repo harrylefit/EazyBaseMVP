@@ -3,22 +3,18 @@ package vn.eazy.base.mvp.example.mvp.ui
 import android.content.Intent
 import android.os.Bundle
 import com.tbruyelle.rxpermissions.RxPermissions
-import io.reactivex.Flowable
 import net.idik.lib.slimadapter.SlimAdapter
 import vn.eazy.base.mvp.base.activity.BaseMainActivity
+import vn.eazy.base.mvp.di.component.AppComponent
 import vn.eazy.base.mvp.example.R
-import vn.eazy.base.mvp.example.mvp.contract.UserContract
-import vn.eazy.base.mvp.example.mvp.model.entity.User
+import vn.eazy.base.mvp.example.mvp.di.component.DaggerUserComponent
+import vn.eazy.base.mvp.example.mvp.di.module.UserModule
 import vn.eazy.base.mvp.example.mvp.presenter.UserPresenter
 import vn.eazy.base.mvp.toolbar.ToolbarHelper
 
-class MainActivity : BaseMainActivity<ToolbarHelper>(), UserContract.View {
-    private var userPresenter : UserPresenter? = null
-    override fun setUpViewsAndData() {
-    }
+class MainActivity : BaseMainActivity<UserPresenter, ToolbarHelper>() {
+    override fun initData(savedInstanceState: Bundle?) {
 
-    override fun getLayoutId(): Int {
-        return vn.eazy.base.mvp.R.layout.activity_main_default
     }
 
     override fun onColorOfToolbar(): Int {
@@ -41,8 +37,11 @@ class MainActivity : BaseMainActivity<ToolbarHelper>(), UserContract.View {
         super.onCreate(savedInstanceState)
         toolbarHelper.setTitle("Harry Le")
         toolbarHelper.showLeftButton(false)
-        userPresenter = UserPresenter(this)
-        userPresenter!!.requestUsers()
+
+    }
+
+    override fun initView(savedInstanceState: Bundle?): Int {
+        return vn.eazy.base.mvp.R.layout.activity_main_default
     }
 
     override fun showLoading() {
@@ -79,5 +78,14 @@ class MainActivity : BaseMainActivity<ToolbarHelper>(), UserContract.View {
     override fun getRxPermissions(): RxPermissions {
         return RxPermissions(this)
     }
+
+    override fun setupActivityComponent(appComponent: AppComponent?) {
+        DaggerUserComponent.builder()
+                .appComponent(appComponent)
+                .userModule(UserModule(this))
+                .build()
+                .inject(this)
+    }
+
 
 }

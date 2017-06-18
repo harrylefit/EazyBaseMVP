@@ -2,6 +2,7 @@ package vn.eazy.base.mvp.base.application;
 
 import android.app.Application;
 
+import vn.eazy.base.mvp.delegate.App;
 import vn.eazy.base.mvp.delegate.AppDelegate;
 import vn.eazy.base.mvp.di.component.AppComponent;
 
