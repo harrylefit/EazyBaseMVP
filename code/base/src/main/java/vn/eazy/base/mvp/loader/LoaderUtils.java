@@ -15,7 +15,7 @@ public interface LoaderUtils {
 
     void showLoading(Context context);
 
-    void showLoaing(@NonNull String title, TYPE type, Context context);
+    void showLoading(@NonNull String title, TYPE type, Context context);
 
     void showLoading(@NonNull String title, Context context);
 

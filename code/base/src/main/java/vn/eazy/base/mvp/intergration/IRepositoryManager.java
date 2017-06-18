@@ -5,4 +5,17 @@ package vn.eazy.base.mvp.intergration;
  */
 
 public interface IRepositoryManager {
+    /**
+     * @param services
+     */
+    void injectRetrofitService(Class<?>... services);
+
+    /**
+     * @param service
+     * @param <T>
+     * @return
+     */
+    <T> T obtainRetrofitServices(Class<T> service);
+
+
 }
