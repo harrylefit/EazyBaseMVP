@@ -1,6 +1,5 @@
 package vn.eazy.base.mvp.example.mvp.ui
 
-import android.content.Intent
 import android.os.Bundle
 import com.google.gson.Gson
 import com.tbruyelle.rxpermissions.RxPermissions

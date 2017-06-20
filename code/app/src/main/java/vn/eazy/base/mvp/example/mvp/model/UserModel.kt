@@ -6,7 +6,6 @@ import vn.eazy.base.mvp.di.scope.ActivityScope
 import vn.eazy.base.mvp.example.mvp.contract.UserContract
 import vn.eazy.base.mvp.example.mvp.model.api.service.UserService
 import vn.eazy.base.mvp.example.mvp.model.entity.User
-import vn.eazy.base.mvp.example.mvp.network.NetworkUtils
 import vn.eazy.base.mvp.intergration.IRepositoryManager
 import javax.inject.Inject
 
@@ -23,10 +22,10 @@ class UserModel : BaseModel, UserContract.Model {
     }
 
     override fun getUsers(): Flowable<List<User>> {
-        val users: Flowable<List<User>>? = NetworkUtils.getRetrofit()?.create(UserService::class.java)
-                ?.getUsers()
+        val users: Flowable<List<User>> =
+                mRepositoryManager.obtainRetrofitServices(UserService::class.java).getUsers()
 
-        return users!!
+        return users
     }
 
 }

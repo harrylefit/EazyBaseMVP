@@ -56,13 +56,13 @@ public class ClientModule {
         builder.cache(cache)
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS);
-        builder.addInterceptor(new LoggingInterceptor.Builder()
-                .loggable(BuildConfig.DEBUG)
-                .setLevel(Level.BODY)
-                .request("Request")
-                .response("Response")
-                .build());
+                .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+                .addInterceptor(new LoggingInterceptor.Builder()
+                        .loggable(BuildConfig.DEBUG)
+                        .setLevel(Level.BODY)
+                        .request("Request")
+                        .response("Response")
+                        .build());
 
 //        if (interceptors != null && !interceptors.isEmpty()) {
 //            for (Interceptor interceptor : interceptors) {
@@ -85,7 +85,7 @@ public class ClientModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Application application, OkHttpClient okHttpClient, Retrofit.Builder builder, HttpUrl httpUrl,@Nullable RetrofitConfiguration configuration) {
+    Retrofit provideRetrofit(Application application, OkHttpClient okHttpClient, Retrofit.Builder builder, HttpUrl httpUrl, @Nullable RetrofitConfiguration configuration) {
         builder.baseUrl(httpUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

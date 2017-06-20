@@ -28,7 +28,7 @@ public class RepositoryManager implements IRepositoryManager {
     public void injectRetrofitService(Class<?>... services) {
         for (Class<?> service : services) {
             if (!mRetrofitServiceCache.containsKey(service.getSimpleName())) {
-                mRetrofitServiceCache.put(service.getSimpleName(), service);
+                mRetrofitServiceCache.put(service.getSimpleName(), mRetrofit.create(service));
             }
         }
     }
