@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager
 import android.util.Log
 import vn.eazy.base.mvp.delegate.AppDelegate
 import vn.eazy.base.mvp.di.module.GlobalModule
+import vn.eazy.base.mvp.example.mvp.lifecycles.LogFragmentLifeCycle
 import vn.eazy.base.mvp.example.mvp.lifecycles.LogLifeCycle
 import vn.eazy.base.mvp.example.mvp.model.api.service.UserService
 import vn.eazy.base.mvp.intergration.ConfigModule
@@ -39,7 +40,7 @@ class GlobalConfiguration : ConfigModule {
     }
 
     override fun injectFragmentLifeCycles(context: Context?, fragmentLifecycleCallbacks: MutableList<FragmentManager.FragmentLifecycleCallbacks>?) {
-
+        fragmentLifecycleCallbacks?.add(LogFragmentLifeCycle())
     }
 
     override fun injectActivityLifeCycles(context: Context?, activityLifeCycles: MutableList<Application.ActivityLifecycleCallbacks>?) {
