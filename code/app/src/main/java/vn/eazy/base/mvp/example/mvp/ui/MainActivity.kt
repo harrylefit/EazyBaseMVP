@@ -2,19 +2,50 @@ package vn.eazy.base.mvp.example.mvp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import com.google.gson.Gson
 import com.tbruyelle.rxpermissions.RxPermissions
 import net.idik.lib.slimadapter.SlimAdapter
 import vn.eazy.base.mvp.base.activity.BaseMainActivity
 import vn.eazy.base.mvp.di.component.AppComponent
 import vn.eazy.base.mvp.example.R
+import vn.eazy.base.mvp.example.mvp.contract.UserContract
 import vn.eazy.base.mvp.example.mvp.di.component.DaggerUserComponent
 import vn.eazy.base.mvp.example.mvp.di.module.UserModule
 import vn.eazy.base.mvp.example.mvp.presenter.UserPresenter
 import vn.eazy.base.mvp.toolbar.ToolbarHelper
+import javax.inject.Inject
 
-class MainActivity : BaseMainActivity<UserPresenter, ToolbarHelper>() {
+class MainActivity : BaseMainActivity<UserPresenter, ToolbarHelper>(), UserContract.View {
+    @Inject
+    lateinit var gson: Gson
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun showMessage(message: String?) {
+    }
+
+
+    override fun setAdapter(adapter: SlimAdapter) {
+
+    }
+
+    override fun startLoadMore() {
+    }
+
+    override fun endLoadMore() {
+    }
+
+    override fun rxPermissions(): RxPermissions {
+        return RxPermissions(this)
+    }
+
     override fun initData(savedInstanceState: Bundle?) {
-
+        mPresenter.getUsers()
     }
 
     override fun onColorOfToolbar(): Int {
@@ -37,46 +68,10 @@ class MainActivity : BaseMainActivity<UserPresenter, ToolbarHelper>() {
         super.onCreate(savedInstanceState)
         toolbarHelper.setTitle("Harry Le")
         toolbarHelper.showLeftButton(false)
-
     }
 
     override fun initView(savedInstanceState: Bundle?): Int {
         return vn.eazy.base.mvp.R.layout.activity_main_default
-    }
-
-    override fun showLoading() {
-
-    }
-
-    override fun hideLoading() {
-
-    }
-
-    override fun showMessage(message: String?) {
-
-    }
-
-    override fun launchActivity(intent: Intent?) {
-
-    }
-
-    override fun killMySelf() {
-
-    }
-
-    override fun setAdapter(slimAdapter: SlimAdapter) {
-    }
-
-    override fun startLoadMore() {
-
-    }
-
-    override fun endLoadMore() {
-
-    }
-
-    override fun getRxPermissions(): RxPermissions {
-        return RxPermissions(this)
     }
 
     override fun setupActivityComponent(appComponent: AppComponent?) {
@@ -86,6 +81,5 @@ class MainActivity : BaseMainActivity<UserPresenter, ToolbarHelper>() {
                 .build()
                 .inject(this)
     }
-
 
 }

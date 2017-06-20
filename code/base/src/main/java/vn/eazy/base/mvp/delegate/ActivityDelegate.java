@@ -39,4 +39,29 @@ public class ActivityDelegate implements Activity, Serializable {
         this.iActivity = null;
         this.mActivity = null;
     }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
 }

@@ -16,4 +16,29 @@ public interface Activity {
      *
      */
     void onDestroy();
+
+    /**
+     *
+     */
+    void onStart();
+
+    /**
+     *
+     */
+    void onResume();
+
+    /**
+     *
+     */
+    void onPause();
+
+    /**
+     * @param outState
+     */
+    void onSaveInstanceState(Bundle outState);
+
+    /**
+     *
+     */
+    void onStop();
 }

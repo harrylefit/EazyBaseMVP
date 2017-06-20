@@ -1,6 +1,7 @@
 package vn.eazy.base.mvp.base.application;
 
 import android.app.Application;
+import android.content.Context;
 
 import vn.eazy.base.mvp.delegate.App;
 import vn.eazy.base.mvp.delegate.AppDelegate;
@@ -18,6 +19,12 @@ public class BaseApplication extends Application implements App {
         super.onCreate();
         this.mAppDelegate = new AppDelegate(this);
         this.mAppDelegate.onCreate();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+//        MultiDex.install(this);
     }
 
     @Override
