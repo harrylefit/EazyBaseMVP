@@ -1,6 +1,8 @@
 package vn.eazy.base.mvp.intergration;
 
+import android.app.Application;
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 
 import java.util.List;
 
@@ -30,4 +32,15 @@ public interface ConfigModule {
      */
     void injectAppLifeCycles(Context context, List<AppDelegate.LifeCycle> lifeCycles);
 
+    /**
+     * @param context
+     * @param activityLifeCycles
+     */
+    void injectActivityLifeCycles(Context context, List<Application.ActivityLifecycleCallbacks> activityLifeCycles);
+
+    /**
+     * @param context
+     * @param fragmentLifecycleCallbacks
+     */
+    void injectFragmentLifeCycles(Context context, List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks);
 }

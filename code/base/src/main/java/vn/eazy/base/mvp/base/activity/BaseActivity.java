@@ -4,42 +4,31 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import butterknife.Unbinder;
-import butterknife.ButterKnife;
+import javax.inject.Inject;
+
+import vn.eazy.base.mvp.architect.IPresenter;
 import vn.eazy.base.mvp.base.OnBaseActionListener;
+import vn.eazy.base.mvp.delegate.IActivity;
 
 /**
  * Created by Harry on 12/23/16.
  */
-public abstract class BaseActivity extends AppCompatActivity implements OnBaseActionListener {
-    public Unbinder unbinder;
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements OnBaseActionListener, IActivity {
+    @Inject
+    public P mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-        bindView();
-        setUpViewsAndData();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unBindView();
-    }
-
-    public void bindView() {
-        unbinder = ButterKnife.bind(this);
-    }
-
-    public void unBindView() {
-        if (unbinder != null) {
-            unbinder.unbind();
+        if (mPresenter != null) {
+            mPresenter.onDestroy();
         }
+        mPresenter = null;
     }
-
-    public abstract void setUpViewsAndData();
-
-    public abstract int getLayoutId();
 
 }

@@ -5,7 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
+import javax.inject.Inject;
+
 import vn.eazy.base.mvp.R;
+import vn.eazy.base.mvp.architect.IPresenter;
 import vn.eazy.base.mvp.helper.FragmentHelper;
 import vn.eazy.base.mvp.helper.FragmentStateHelper;
 import vn.eazy.base.mvp.toolbar.OnCallBackToolbarAction;
@@ -15,7 +18,7 @@ import vn.eazy.base.mvp.toolbar.ToolbarHelper;
  * Created by QuangTo on 12/24/16.
  */
 
-public abstract class BaseMainActivity<T extends ToolbarHelper> extends BaseActivity implements OnCallBackToolbarAction {
+public abstract class BaseMainActivity<P extends IPresenter, T extends ToolbarHelper> extends BaseActivity<P> implements OnCallBackToolbarAction {
     private final String NULL_TOOLBAR_EX = "Can't find toolbar of this activity. Please checking it. Note: With raw id : R.id.toolbar";
     public ToolbarHelper toolbarHelper;
     protected Toolbar toolbar;

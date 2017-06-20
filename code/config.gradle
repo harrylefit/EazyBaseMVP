@@ -23,6 +23,7 @@ ext {
             rxPermissionVersion      : "0.9.4@aar",
             daggerVersion            : "2.11",
             loggingInterceptorVersion: "2.0.0",
+            multiDexVersion          : "1.0.1"
     ]
 
     dependencies = [
@@ -62,6 +63,8 @@ ext {
             "dagger"                  : "com.google.dagger:dagger:${version["daggerVersion"]}",
             "dagger-compiler"         : "com.google.dagger:dagger-compiler:${version["daggerVersion"]}",
 
+            //Multidex
+            "multidex"                : "com.android.support:multidex:${version["multiDexVersion"]}"
 
     ]
 }

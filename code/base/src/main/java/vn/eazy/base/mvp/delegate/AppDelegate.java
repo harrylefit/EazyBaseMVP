@@ -5,12 +5,14 @@ import android.app.Application;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.eazy.base.mvp.base.application.App;
+import javax.inject.Inject;
+
 import vn.eazy.base.mvp.di.component.AppComponent;
 import vn.eazy.base.mvp.di.component.DaggerAppComponent;
 import vn.eazy.base.mvp.di.module.AppModule;
 import vn.eazy.base.mvp.di.module.ClientModule;
 import vn.eazy.base.mvp.di.module.GlobalModule;
+import vn.eazy.base.mvp.intergration.ActivityLifeCycle;
 import vn.eazy.base.mvp.intergration.ConfigModule;
 import vn.eazy.base.mvp.intergration.ManifestParser;
 
@@ -22,14 +24,19 @@ public class AppDelegate implements App {
     private Application mApplication;
     private AppComponent mAppComponent;
 
+    @Inject
+    ActivityLifeCycle mActivityLifeCycle;
+
     private final List<ConfigModule> mConfigModules;
     private List<LifeCycle> mAppLifeCycles = new ArrayList<>();
+    private List<Application.ActivityLifecycleCallbacks> mActivityLifeCycles = new ArrayList<>();
 
     public AppDelegate(Application application) {
         this.mApplication = application;
         this.mConfigModules = new ManifestParser(application).parse();
         for (ConfigModule module : mConfigModules) {
             module.injectAppLifeCycles(mApplication, mAppLifeCycles);
+            module.injectActivityLifeCycles(mApplication, mActivityLifeCycles);
         }
     }
 
@@ -48,9 +55,16 @@ public class AppDelegate implements App {
             module.registerComponents(mApplication, mAppComponent.getIRepositoryManager());
         }
 
+        mApplication.registerActivityLifecycleCallbacks(mActivityLifeCycle);
+
+        for (Application.ActivityLifecycleCallbacks activityLifecycleCallbacks : mActivityLifeCycles) {
+            mApplication.registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
+        }
+
         for (LifeCycle lifeCycle : mAppLifeCycles) {
             lifeCycle.onCreate(mApplication);
         }
+
     }
 
     public void onTerminal() {
@@ -59,7 +73,20 @@ public class AppDelegate implements App {
                 lifeCycle.onTerminate(mApplication);
             }
         }
+
+        if (mActivityLifeCycle != null) {
+            mApplication.unregisterActivityLifecycleCallbacks(mActivityLifeCycle);
+        }
+
+        if (mActivityLifeCycles != null && !mActivityLifeCycles.isEmpty()) {
+            for (Application.ActivityLifecycleCallbacks activityLifecycleCallbacks : mActivityLifeCycles) {
+                mApplication.unregisterActivityLifecycleCallbacks(activityLifecycleCallbacks);
+            }
+        }
+
         this.mAppLifeCycles = null;
+        this.mActivityLifeCycle = null;
+        this.mActivityLifeCycles = null;
         this.mAppComponent = null;
         this.mApplication = null;
 

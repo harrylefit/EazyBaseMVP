@@ -8,8 +8,6 @@ import vn.eazy.base.mvp.example.mvp.model.api.service.UserService
 import vn.eazy.base.mvp.example.mvp.model.entity.User
 import vn.eazy.base.mvp.example.mvp.network.NetworkUtils
 import vn.eazy.base.mvp.intergration.IRepositoryManager
-import vn.eazy.base.mvp.intergration.RepositoryManager
-import vn.eazy.base.mvp.utils.NetWorkUtils
 import javax.inject.Inject
 
 /**

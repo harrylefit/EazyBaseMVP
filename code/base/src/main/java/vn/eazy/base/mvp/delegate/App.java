@@ -1,4 +1,4 @@
-package vn.eazy.base.mvp.base.application;
+package vn.eazy.base.mvp.delegate;
 
 import vn.eazy.base.mvp.di.component.AppComponent;
 

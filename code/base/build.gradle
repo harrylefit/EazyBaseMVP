@@ -11,8 +11,8 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        multiDexEnabled true
 
     }
     buildTypes {
@@ -81,4 +81,7 @@ dependencies {
     //Dagger
     implementation rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+
+    //Multidex
+//    implementation rootProject.ext.dependencies["multidex"]
 }

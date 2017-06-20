@@ -12,8 +12,4 @@ public interface IView {
     void hideLoading();
 
     void showMessage(String message);
-
-    void launchActivity(Intent intent);
-
-    void killMySelf();
 }
