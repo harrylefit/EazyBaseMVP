@@ -29,12 +29,4 @@ public interface IFragment {
      */
     void initData(Bundle savedInstanceState);
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     */
-    void initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-
 }

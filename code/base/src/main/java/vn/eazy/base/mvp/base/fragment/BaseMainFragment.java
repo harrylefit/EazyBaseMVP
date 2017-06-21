@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import vn.eazy.base.mvp.architect.IPresenter;
 import vn.eazy.base.mvp.base.OnBaseActionListener;
 import vn.eazy.base.mvp.base.activity.BaseMainActivity;
 import vn.eazy.base.mvp.toolbar.ToolbarHelper;
@@ -14,7 +15,12 @@ import vn.eazy.base.mvp.toolbar.ToolbarHelper;
  * Created by Harry on 12/23/16.
  */
 
-public abstract class BaseMainFragment extends BaseFragment implements OnBaseActionListener {
+public abstract class BaseMainFragment<P extends IPresenter> extends BaseFragment<P> implements OnBaseActionListener {
+
+    public BaseMainFragment() {
+        super();
+    }
+
     @Override
     public void setTitleToolbar(String msg) {
         getBaseActivity().setTitleToolbar(msg);
@@ -27,7 +33,7 @@ public abstract class BaseMainFragment extends BaseFragment implements OnBaseAct
 
     @Override
     public void setTitleToolbar(String msg, String font) {
-        getBaseActivity().setTitleToolbar(msg,font);
+        getBaseActivity().setTitleToolbar(msg, font);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package vn.eazy.base.mvp.base.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,18 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import vn.eazy.base.mvp.architect.IPresenter;
 import vn.eazy.base.mvp.base.CallbackObject;
 import vn.eazy.base.mvp.base.activity.BaseActivity;
 import vn.eazy.base.mvp.base.activity.BaseMainActivity;
+import vn.eazy.base.mvp.delegate.IFragment;
 import vn.eazy.base.mvp.helper.FragmentHelper;
 
 /**
  * Created by Harry on 12/23/16.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IFragment {
+    @Inject
+    public P mPresenter;
+
     protected View rootView;
     private Unbinder unbinder;
     private OnCallbackListener callbackListener;
@@ -51,6 +59,15 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         unBindView();
         unBindMenu();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null) {
+            mPresenter.onDestroy();
+        }
+        mPresenter = null;
     }
 
     public abstract int getLayoutId();

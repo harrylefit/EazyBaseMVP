@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 
-import javax.inject.Singleton;
-
 import vn.eazy.base.mvp.delegate.FragmentDelegate;
 import vn.eazy.base.mvp.delegate.IFragment;
 
@@ -18,6 +16,10 @@ public class FragmentLifeCycle extends FragmentManager.FragmentLifecycleCallback
     @Override
     public void onFragmentCreated(FragmentManager fm, Fragment f, Bundle savedInstanceState) {
         super.onFragmentCreated(fm, f, savedInstanceState);
+        FragmentDelegate delegate = getFragmentDelegate(f);
+        if (delegate != null) {
+            delegate.onCreate(savedInstanceState);
+        }
         Log.d("TAG", "onFragmentCreated life cycle");
     }
 
@@ -99,7 +101,7 @@ public class FragmentLifeCycle extends FragmentManager.FragmentLifecycleCallback
 
     private FragmentDelegate getFragmentDelegate(Fragment fragment) {
         if (fragment instanceof IFragment) {
-            return (FragmentDelegate) fragment.getArguments().getSerializable(FragmentDelegate.FRAGMENT_LIFECYCLE);
+            return fragment.getArguments() == null ? null : (FragmentDelegate) fragment.getArguments().getSerializable(FragmentDelegate.FRAGMENT_LIFECYCLE);
         }
         return null;
     }

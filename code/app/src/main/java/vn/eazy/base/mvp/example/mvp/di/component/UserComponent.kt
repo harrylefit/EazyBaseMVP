@@ -4,6 +4,7 @@ import dagger.Component
 import vn.eazy.base.mvp.di.component.AppComponent
 import vn.eazy.base.mvp.di.scope.ActivityScope
 import vn.eazy.base.mvp.example.mvp.di.module.UserModule
+import vn.eazy.base.mvp.example.mvp.ui.DataFragment
 import vn.eazy.base.mvp.example.mvp.ui.MainActivity
 
 /**
@@ -13,4 +14,5 @@ import vn.eazy.base.mvp.example.mvp.ui.MainActivity
 @Component(modules = arrayOf(UserModule::class), dependencies = arrayOf(AppComponent::class))
 interface UserComponent {
     fun inject(mainActivity: MainActivity)
+    fun inject(dataFragment: DataFragment)
 }
