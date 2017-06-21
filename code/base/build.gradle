@@ -52,7 +52,7 @@ dependencies {
     }
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["okhttp-urlconnection"]
-    implementation (rootProject.ext.dependencies["logging-interceptor"]){
+    implementation(rootProject.ext.dependencies["logging-interceptor"]) {
         exclude group: 'org.json', module: 'json'
     }
     implementation rootProject.ext.dependencies["glide"]
@@ -82,6 +82,8 @@ dependencies {
     implementation rootProject.ext.dependencies["dagger"]
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
 
-    //Multidex
-//    implementation rootProject.ext.dependencies["multidex"]
+    //RxLifeCycle
+    implementation rootProject.ext.dependencies["rxLifeCycle"]
+    implementation rootProject.ext.dependencies["rxLifeCycleAndroid"]
+    implementation rootProject.ext.dependencies["rxLifeCycleComponent"]
 }

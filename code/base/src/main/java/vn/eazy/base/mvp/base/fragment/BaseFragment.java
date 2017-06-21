@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.trello.rxlifecycle2.components.support.RxFragment;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
@@ -23,7 +25,7 @@ import vn.eazy.base.mvp.helper.FragmentHelper;
  * Created by Harry on 12/23/16.
  */
 
-public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IFragment {
+public abstract class BaseFragment<P extends IPresenter> extends RxFragment implements IFragment {
     @Inject
     public P mPresenter;
 
@@ -33,6 +35,12 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment implem
 
     public interface OnCallbackListener {
         void onCallback(CallbackObject callbackObject);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Nullable

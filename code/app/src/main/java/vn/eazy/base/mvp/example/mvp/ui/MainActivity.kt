@@ -44,7 +44,6 @@ class MainActivity : BaseMainActivity<UserPresenter, ToolbarHelper>(), UserContr
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        mPresenter.getUsers()
 
         fragmentHelper.replaceFragment(DataFragment.newInstance(null))
     }

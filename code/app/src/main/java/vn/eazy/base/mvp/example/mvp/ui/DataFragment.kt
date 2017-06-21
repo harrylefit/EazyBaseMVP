@@ -1,9 +1,7 @@
 package vn.eazy.base.mvp.example.mvp.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.google.gson.Gson
 import com.tbruyelle.rxpermissions.RxPermissions
 import net.idik.lib.slimadapter.SlimAdapter

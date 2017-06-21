@@ -23,7 +23,8 @@ ext {
             rxPermissionVersion      : "0.9.4@aar",
             daggerVersion            : "2.11",
             loggingInterceptorVersion: "2.0.0",
-            multiDexVersion          : "1.0.1"
+            multiDexVersion          : "1.0.1",
+            rxLifeCycleVersion       : "2.1.0",
     ]
 
     dependencies = [
@@ -64,7 +65,13 @@ ext {
             "dagger-compiler"         : "com.google.dagger:dagger-compiler:${version["daggerVersion"]}",
 
             //Multidex
-            "multidex"                : "com.android.support:multidex:${version["multiDexVersion"]}"
+            "multidex"                : "com.android.support:multidex:${version["multiDexVersion"]}",
+
+            //RxLifeCycle
+            "rxLifeCycle"             : "com.trello.rxlifecycle2:rxlifecycle:${version["rxLifeCycleVersion"]}",
+            "rxLifeCycleAndroid"      : "com.trello.rxlifecycle2:rxlifecycle-android:${version["rxLifeCycleVersion"]}",
+            "rxLifeCycleComponent"    : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxLifeCycleVersion"]}",
+            "rxLifeCycleKotlin"       : "com.trello.rxlifecycle2:rxlifecycle-kotlin:${version["rxLifeCycleVersion"]}",
 
     ]
 }
