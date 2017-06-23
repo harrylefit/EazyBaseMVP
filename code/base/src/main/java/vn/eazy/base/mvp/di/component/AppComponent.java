@@ -18,6 +18,7 @@ import vn.eazy.base.mvp.di.module.ClientModule;
 import vn.eazy.base.mvp.di.module.GlobalModule;
 import vn.eazy.base.mvp.intergration.IRepositoryManager;
 import vn.eazy.base.mvp.intergration.RepositoryManager;
+import vn.eazy.base.mvp.intergration.handler.error.RxErrorHandler;
 
 /**
  * Created by harryle on 6/17/17.
@@ -36,6 +37,8 @@ public interface AppComponent {
     Map<String, Object> extras();
 
     IRepositoryManager getIRepositoryManager();
+
+    RxErrorHandler rxErrorHandler();
 
     Retrofit retrofit();
 

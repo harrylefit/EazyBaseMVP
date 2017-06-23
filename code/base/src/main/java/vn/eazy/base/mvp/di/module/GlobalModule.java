@@ -14,6 +14,7 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
+import vn.eazy.base.mvp.intergration.handler.error.listener.ResponseErrorListener;
 import vn.eazy.base.mvp.utils.DataHelper;
 
 /**
@@ -23,8 +24,10 @@ import vn.eazy.base.mvp.utils.DataHelper;
 public class GlobalModule {
     private File mCacheFile;
     private AppModule.GsonConfiguration mGsonConfiguration;
+    private ClientModule.OkHttpConfiguration mOkHttpConfiguration;
     private ClientModule.RetrofitConfiguration mRetrofitConfiguration;
     private List<Interceptor> mInterceptors;
+    private ResponseErrorListener mResponseErrorListener;
     private String baseUrl;
 
     private GlobalModule(Builder builder) {
@@ -33,6 +36,8 @@ public class GlobalModule {
         this.mGsonConfiguration = builder.gsonConfiguration;
         this.mInterceptors = builder.interceptors;
         this.mRetrofitConfiguration = builder.retrofitConfiguration;
+        this.mOkHttpConfiguration = builder.okHttpConfiguration;
+        this.mResponseErrorListener = builder.responseErrorListener;
     }
 
     public static Builder builder() {
@@ -75,8 +80,21 @@ public class GlobalModule {
 
     @Provides
     @Singleton
+    @Nullable
+    ClientModule.OkHttpConfiguration provideOkHttpConfiguration() {
+        return this.mOkHttpConfiguration;
+    }
+
+    @Provides
+    @Singleton
     HttpUrl provideHttpUrl(@Named("baseUrl") String baseUrl) {
         return HttpUrl.parse(baseUrl);
+    }
+
+    @Provides
+    @Singleton
+    ResponseErrorListener provideErrorListener() {
+        return mResponseErrorListener;
     }
 
     public static final class Builder {
@@ -85,6 +103,8 @@ public class GlobalModule {
         private List<Interceptor> interceptors;
         private String baseUrl;
         private ClientModule.RetrofitConfiguration retrofitConfiguration;
+        private ClientModule.OkHttpConfiguration okHttpConfiguration;
+        private ResponseErrorListener responseErrorListener;
 
         private Builder() {
 
@@ -112,6 +132,16 @@ public class GlobalModule {
 
         public Builder retrofitConfiguration(ClientModule.RetrofitConfiguration retrofitConfiguration) {
             this.retrofitConfiguration = retrofitConfiguration;
+            return this;
+        }
+
+        public Builder okHttpConfiguration(ClientModule.OkHttpConfiguration okHttpConfiguration) {
+            this.okHttpConfiguration = okHttpConfiguration;
+            return this;
+        }
+
+        public Builder responseErrorListener(ResponseErrorListener responseErrorListener) {
+            this.responseErrorListener = responseErrorListener;
             return this;
         }
 

@@ -4,6 +4,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import vn.eazy.base.mvp.intergration.handler.error.RxErrorHandler;
 
 /**
  * Created by harryle on 6/10/17.
@@ -16,9 +17,12 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     protected M mModel;
     protected V mView;
 
-    public BasePresenter(M model, V view) {
+    protected RxErrorHandler mHandler;
+
+    public BasePresenter(M model, V view, RxErrorHandler handler) {
         this.mModel = model;
         this.mView = view;
+        this.mHandler = handler;
         onStart();
     }
 

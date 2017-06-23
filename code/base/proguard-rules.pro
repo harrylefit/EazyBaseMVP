@@ -194,3 +194,7 @@
 -dontwarn io.rx_cache.internal.**
 -keep class io.rx_cache.internal.Record { *; }
 -keep class io.rx_cache.Source { *; }
+
+###############RxErrorHandler###########
+ -keep class me.jessyan.rxerrorhandler.** { *; }
+ -keep interface me.jessyan.rxerrorhandler.** { *; }

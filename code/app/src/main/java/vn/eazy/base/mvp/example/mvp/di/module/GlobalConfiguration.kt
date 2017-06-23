@@ -21,6 +21,10 @@ class GlobalConfiguration : ConfigModule {
         builder.baseUrl("http://demo6594088.mockable.io")
         builder.retrofitConfiguration { context, builder -> Log.d("TAG", "Config retrofit") }
         builder.gsonConfiguration { context, builder -> Log.d("TAG", "Config Gson") }
+        builder.okHttpConfiguration { context, builder ->
+            Log.d("TAG", "Config OkHttpConfiguration")
+        }
+        builder.responseErrorListener { context, builder -> Log.d("TAG", "Handle Response Error") }
     }
 
     override fun registerComponents(context: Context, repositoryManager: IRepositoryManager) {

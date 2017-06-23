@@ -23,7 +23,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import vn.eazy.base.mvp.BuildConfig;
-import vn.eazy.base.mvp.intergration.RepositoryManager;
+import vn.eazy.base.mvp.intergration.handler.error.RxErrorHandler;
+import vn.eazy.base.mvp.intergration.handler.error.listener.ResponseErrorListener;
 
 /**
  * Created by harryle on 6/17/17.
@@ -52,7 +53,7 @@ public class ClientModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Application application, OkHttpClient.Builder builder, @Nullable Cache cache) {
+    OkHttpClient provideOkHttpClient(Application application, OkHttpClient.Builder builder, @Nullable Cache cache, @Nullable List<Interceptor> interceptors, @Nullable OkHttpConfiguration httpConfiguration) {
         builder.cache(cache)
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
@@ -64,15 +65,15 @@ public class ClientModule {
                         .response("Response")
                         .build());
 
-//        if (interceptors != null && !interceptors.isEmpty()) {
-//            for (Interceptor interceptor : interceptors) {
-//                builder.addInterceptor(interceptor);
-//            }
-//        }
+        if (interceptors != null && !interceptors.isEmpty()) {
+            for (Interceptor interceptor : interceptors) {
+                builder.addInterceptor(interceptor);
+            }
+        }
 
-//        if (httpConfiguration != null) {
-//            httpConfiguration.configOkHttp(application, builder);
-//        }
+        if (httpConfiguration != null) {
+            httpConfiguration.configOkHttp(application, builder);
+        }
 
         return builder.build();
     }
@@ -97,6 +98,14 @@ public class ClientModule {
         return builder.build();
     }
 
+    @Provides
+    @Singleton
+    RxErrorHandler provideErrorHandler(Application application, ResponseErrorListener errorListener) {
+        return RxErrorHandler.builder()
+                .with(application)
+                .responseErrorListener(errorListener)
+                .build();
+    }
 
     public interface OkHttpConfiguration {
         void configOkHttp(Context context, OkHttpClient.Builder builder);

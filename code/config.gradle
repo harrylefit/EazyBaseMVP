@@ -25,6 +25,8 @@ ext {
             loggingInterceptorVersion: "2.0.0",
             multiDexVersion          : "1.0.1",
             rxLifeCycleVersion       : "2.1.0",
+            rxCacheVersion           : "1.8.0-2.x",
+            polyglotVersion          : "0.0.3",
     ]
 
     dependencies = [
@@ -73,5 +75,8 @@ ext {
             "rxLifeCycleComponent"    : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxLifeCycleVersion"]}",
             "rxLifeCycleKotlin"       : "com.trello.rxlifecycle2:rxlifecycle-kotlin:${version["rxLifeCycleVersion"]}",
 
+            //RxCache
+            "rxCache"                 : "com.github.VictorAlbertos.RxCache:runtime:${version["rxCacheVersion"]}",
+            "polyglot"                : "com.github.VictorAlbertos.Jolyglot:gson:${version["polyglotVersion"]}",
     ]
 }

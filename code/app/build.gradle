@@ -99,6 +99,9 @@ dependencies {
     implementation rootProject.ext.dependencies["rxLifeCycleComponent"]
     implementation rootProject.ext.dependencies["rxLifeCycleKotlin"]
 
+    //RxCache
+    implementation rootProject.ext.dependencies["rxCache"]
+    implementation rootProject.ext.dependencies["polyglot"]
 }
 kapt {
     generateStubs = true

@@ -57,6 +57,7 @@ public class AppModule {
         return repositoryManager;
     }
 
+
     @Provides
     @Singleton
     Map<String, Object> provideExtras() {

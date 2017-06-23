@@ -86,4 +86,5 @@ dependencies {
     implementation rootProject.ext.dependencies["rxLifeCycle"]
     implementation rootProject.ext.dependencies["rxLifeCycleAndroid"]
     implementation rootProject.ext.dependencies["rxLifeCycleComponent"]
+
 }
