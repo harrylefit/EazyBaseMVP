@@ -9,13 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import vn.eazy.base.mvp.R;
-import vn.eazy.base.mvp.base.data.BaseObject;
 
 /**
  * Created by Harry on 12/25/16.
  */
 
-public abstract class BaseWithDataFragment<V extends BaseObject> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseWithDataFragment<V> extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     private TYPE_LAYOUT_MANAGER type;
 
     public enum TYPE_LAYOUT_MANAGER {

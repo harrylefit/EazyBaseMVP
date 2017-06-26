@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -29,7 +30,79 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
 
-    implementation "com.android.support:appcompat-v7:25.4.0"
+    implementation("com.android.support:appcompat-v7:25.4.0") {
+        transitive true
+    }
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation (project(':base'))
+    implementation(project(':base')) {
+        transitive true
+    }
+
+    implementation rootProject.ext.dependencies["butter-knife"]
+    provided "javax.annotation:jsr250-api:1.0"
+    kapt rootProject.ext.dependencies["butter-knife-compiler"]
+
+    //Permissions
+    implementation(rootProject.ext.dependencies["rx-permissions"]) {
+        force true
+    }
+
+    //Slim Adapter
+    implementation(rootProject.ext.dependencies["slim-adapter"]) {
+        exclude module: "recyclerview-v7"
+        force true
+    }
+
+    //network
+    implementation(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: "okhttp"
+        force true
+    }
+
+    implementation(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        force true
+    }
+
+    implementation(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+        exclude module: "rxjava"
+        force true
+    }
+    implementation(rootProject.ext.dependencies["okhttp3"]) {
+        force true
+    }
+    implementation(rootProject.ext.dependencies["okhttp-urlconnection"]) {
+        force true
+    }
+    implementation(rootProject.ext.dependencies["glide"]) {
+        force true
+    }
+
+    //Reactive
+    implementation(rootProject.ext.dependencies["rxandroid2"]) {
+        force true
+    }
+    implementation(rootProject.ext.dependencies["rxjava2"]) {
+        force true
+    }
+
+    //Dagger
+    implementation(rootProject.ext.dependencies["dagger"]) {
+        force true
+    }
+    kapt rootProject.ext.dependencies["dagger-compiler"]
+
+    implementation rootProject.ext.dependencies["multidex"]
+
+    //RxLifeCycle
+    implementation rootProject.ext.dependencies["rxLifeCycle"]
+    implementation rootProject.ext.dependencies["rxLifeCycleAndroid"]
+    implementation rootProject.ext.dependencies["rxLifeCycleComponent"]
+    implementation rootProject.ext.dependencies["rxLifeCycleKotlin"]
+
+    //RxCache
+    implementation rootProject.ext.dependencies["rxCache"]
+    implementation rootProject.ext.dependencies["polyglot"]
+}
+kapt {
+    generateStubs = true
 }

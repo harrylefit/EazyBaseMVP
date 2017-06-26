@@ -20,8 +20,8 @@ import com.facebook.rebound.SpringSystem;
  */
 
 public abstract class BaseAnimationDialog extends BaseDialog implements View.OnClickListener {
-    private int time_start_animation = 200;
-    private int time_end_animation = 200;
+    private int timeStartAnimation = 200;
+    private int timeEndAnimation = 200;
 
     private static final double TENSION = 800;
     private static final double DAMPER = 40;
@@ -41,7 +41,7 @@ public abstract class BaseAnimationDialog extends BaseDialog implements View.OnC
 
     public BaseAnimationDialog(Context context) {
         super(context);
-        init(time_start_animation, time_end_animation);
+        init(timeStartAnimation, timeEndAnimation);
     }
 
     public BaseAnimationDialog(Context context, int startAnim, int endAnim) {
@@ -55,8 +55,8 @@ public abstract class BaseAnimationDialog extends BaseDialog implements View.OnC
     }
 
     private void init(int startAnim, int endAnim) {
-        this.time_start_animation = startAnim;
-        this.time_end_animation = endAnim;
+        this.timeStartAnimation = startAnim;
+        this.timeEndAnimation = endAnim;
         springSystem = SpringSystem.create();
         mSpring = springSystem.createSpring();
 
@@ -87,7 +87,7 @@ public abstract class BaseAnimationDialog extends BaseDialog implements View.OnC
                         mSpring.setEndValue(dialogContent.getY());
                     }
                 }
-            }, time_start_animation);
+            }, timeStartAnimation);
 
             mSpring.addListener(new SpringListener() {
                 @Override
@@ -156,7 +156,7 @@ public abstract class BaseAnimationDialog extends BaseDialog implements View.OnC
                 public void run() {
                     dismiss();
                 }
-            }, time_end_animation);
+            }, timeEndAnimation);
         }else{
             dismiss();
         }
