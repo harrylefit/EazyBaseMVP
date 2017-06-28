@@ -31,13 +31,13 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Application provideApplication() {
+    public Application provideApplication() {
         return mApplication;
     }
 
     @Provides
     @Singleton
-    Gson provideGson(Application application, @Nullable GsonConfiguration configuration) {
+    public Gson provideGson(Application application, @Nullable GsonConfiguration configuration) {
         GsonBuilder builder = new GsonBuilder();
         if (configuration != null) {
             configuration.configGson(application, builder);
@@ -47,20 +47,20 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Handler provideHandler() {
+    public Handler provideHandler() {
         return new Handler();
     }
 
     @Provides
     @Singleton
-    IRepositoryManager provideRepositoryManager(RepositoryManager repositoryManager) {
+    public IRepositoryManager provideRepositoryManager(RepositoryManager repositoryManager) {
         return repositoryManager;
     }
 
 
     @Provides
     @Singleton
-    Map<String, Object> provideExtras() {
+    public Map<String, Object> provideExtras() {
         return new HashMap<>();
     }
 

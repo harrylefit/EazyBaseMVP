@@ -39,21 +39,21 @@ public class ClientModule {
 
     @Provides
     @Singleton
-    Cache provideCache(File cacheFile) {
+    public Cache provideCache(File cacheFile) {
         Cache cache = new Cache(cacheFile, CACHE_SIZE);
         return cache;
     }
 
     @Provides
     @Singleton
-    OkHttpClient.Builder provideOkHttpBuilder() {
+    public OkHttpClient.Builder provideOkHttpBuilder() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         return builder;
     }
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Application application, OkHttpClient.Builder builder, @Nullable Cache cache, @Nullable List<Interceptor> interceptors, @Nullable OkHttpConfiguration httpConfiguration) {
+    public OkHttpClient provideOkHttpClient(Application application, OkHttpClient.Builder builder, @Nullable Cache cache, @Nullable List<Interceptor> interceptors, @Nullable OkHttpConfiguration httpConfiguration) {
         builder.cache(cache)
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
@@ -80,13 +80,13 @@ public class ClientModule {
 
     @Provides
     @Singleton
-    Retrofit.Builder provideRetrofitBuilder() {
+    public Retrofit.Builder provideRetrofitBuilder() {
         return new Retrofit.Builder();
     }
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Application application, OkHttpClient okHttpClient, Retrofit.Builder builder, HttpUrl httpUrl, @Nullable RetrofitConfiguration configuration) {
+    public Retrofit provideRetrofit(Application application, OkHttpClient okHttpClient, Retrofit.Builder builder, HttpUrl httpUrl, @Nullable RetrofitConfiguration configuration) {
         builder.baseUrl(httpUrl)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -100,7 +100,7 @@ public class ClientModule {
 
     @Provides
     @Singleton
-    RxErrorHandler provideErrorHandler(Application application, ResponseErrorListener errorListener) {
+    public RxErrorHandler provideErrorHandler(Application application, ResponseErrorListener errorListener) {
         return RxErrorHandler.builder()
                 .with(application)
                 .responseErrorListener(errorListener)

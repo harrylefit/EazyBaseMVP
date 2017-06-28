@@ -46,54 +46,54 @@ public class GlobalModule {
 
     @Provides
     @Singleton
-    File provideCacheFile(Application application) {
+    public File provideCacheFile(Application application) {
         return mCacheFile == null ? DataHelper.getCacheFile(application) : mCacheFile;
     }
 
     @Provides
     @Singleton
     @Nullable
-    AppModule.GsonConfiguration provideGsonConfiguartion() {
+    public AppModule.GsonConfiguration provideGsonConfiguartion() {
         return this.mGsonConfiguration;
     }
 
     @Provides
     @Singleton
     @Nullable
-    List<Interceptor> provideInterceptors() {
+    public List<Interceptor> provideInterceptors() {
         return mInterceptors;
     }
 
     @Provides
     @Singleton
     @Named("baseUrl")
-    String provideBaseUrl() {
+    public String provideBaseUrl() {
         return baseUrl;
     }
 
     @Provides
     @Singleton
     @Nullable
-    ClientModule.RetrofitConfiguration provideRetrofitConfiguration() {
+    public ClientModule.RetrofitConfiguration provideRetrofitConfiguration() {
         return this.mRetrofitConfiguration;
     }
 
     @Provides
     @Singleton
     @Nullable
-    ClientModule.OkHttpConfiguration provideOkHttpConfiguration() {
+    public ClientModule.OkHttpConfiguration provideOkHttpConfiguration() {
         return this.mOkHttpConfiguration;
     }
 
     @Provides
     @Singleton
-    HttpUrl provideHttpUrl(@Named("baseUrl") String baseUrl) {
+    public HttpUrl provideHttpUrl(@Named("baseUrl") String baseUrl) {
         return HttpUrl.parse(baseUrl);
     }
 
     @Provides
     @Singleton
-    ResponseErrorListener provideErrorListener() {
+    public ResponseErrorListener provideErrorListener() {
         return mResponseErrorListener;
     }
 

@@ -21,11 +21,12 @@ import javax.inject.Inject
  */
 @ActivityScope
 class UserPresenter @Inject
-constructor(model: UserContract.Model, view: UserContract.View, handler: RxErrorHandler, val application: Application) : BasePresenter<UserContract.Model, UserContract.View>(model, view, handler) {
+constructor(model: UserContract.Model, view: UserContract.View, handler: RxErrorHandler) : BasePresenter<UserContract.Model, UserContract.View>(model, view, handler) {
 
     override fun useEventBus(): Boolean {
         return false
     }
+
 
     fun getUsers() {
         mModel.getUsers()
