@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import vn.eazy.base.mvp.delegate.AppDelegate;
@@ -41,6 +42,8 @@ public interface AppComponent {
     RxErrorHandler rxErrorHandler();
 
     Retrofit retrofit();
+
+    HttpUrl httpUrl();
 
     void inject(AppDelegate appDelegate);
 }

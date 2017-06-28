@@ -28,7 +28,7 @@ constructor(model: UserContract.Model, view: UserContract.View, handler: RxError
     }
 
 
-    fun getUsers() {
+    fun getUsers() {A
         mModel.getUsers()
                 .retryWhen { errors -> RetryWithDelay(3, 2).apply(errors) }
                 .compose(RxUtils.applySchedules(mView))
